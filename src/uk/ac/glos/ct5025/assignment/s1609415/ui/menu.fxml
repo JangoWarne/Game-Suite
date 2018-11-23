@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,5 +12,44 @@
 
 
 <AnchorPane prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.glos.ct5025.assignment.s1609415.ui.UIController">
-
+   <children>
+      <Button alignment="CENTER" layoutX="994.0" layoutY="417.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+         <graphic>
+            <ImageView fitHeight="165.0" fitWidth="180.0">
+               <image>
+                  <Image url="@snake%20on%20ladder.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" layoutX="610.0" layoutY="417.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+         <graphic>
+            <ImageView fitHeight="180.0" fitWidth="180.0">
+               <image>
+                  <Image url="@ticTacToe.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button alignment="CENTER" layoutX="223.0" layoutY="419.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0">
+         <graphic>
+            <ImageView fitHeight="180.0" fitWidth="180.0">
+               <image>
+                  <Image url="@two%20dice.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Rectangle arcHeight="5.0" height="64.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="1400.0" />
+      <Text fill="WHITE" layoutX="626.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Suite" textAlignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Label layoutX="1287.0" layoutY="19.0" text="Statistics" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

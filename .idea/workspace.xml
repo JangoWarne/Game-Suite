@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/computer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/dice.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/diceGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/diceGame.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/oxGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/oxGame.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/oxSize.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/oxSize.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/players.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/players.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/slGame.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/slGame.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,8 +85,8 @@
         <entry file="file://$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/menu.fxml">
           <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="825">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
             </state>
           </provider>
         </entry>
@@ -219,7 +224,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542836471268" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543000788949" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -440,8 +445,8 @@
     <entry file="file://$PROJECT_DIR$/src/uk/ac/glos/ct5025/assignment/s1609415/ui/menu.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="825">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
         </state>
       </provider>
     </entry>

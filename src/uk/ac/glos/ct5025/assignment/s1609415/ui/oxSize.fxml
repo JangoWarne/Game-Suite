@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="uk.ac.glos.ct5025.assignment.s1609415.ui.UIController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.glos.ct5025.assignment.s1609415.ui.UIController">
+   <children>
+      <Rectangle arcHeight="5.0" height="64.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="1400.0" />
+      <Rectangle fill="WHITE" height="18.0" layoutX="52.0" layoutY="23.0" stroke="WHITE" strokeType="INSIDE" width="26.0" />
+      <Polygon fill="WHITE" layoutX="41.0" layoutY="42.0" rotate="270.0" scaleX="0.35" scaleY="0.3" stroke="WHITE" strokeType="INSIDE">
+         <points>
+            <Double fx:value="-50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-60.0" />
+         </points>
+      </Polygon>
+      <Region layoutX="20.0" layoutY="13.0" prefHeight="42.0" prefWidth="62.0" />
+      <Text fill="WHITE" layoutX="629.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Suite" textAlignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Button layoutX="646.0" layoutY="760.0" mnemonicParsing="false" prefWidth="120.0" text="Done">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Line endX="250.0" layoutX="505.0" layoutY="405.0" rotate="90.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="555.0" layoutY="405.0" rotate="90.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="605.0" layoutY="405.0" rotate="90.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="655.0" layoutY="405.0" rotate="90.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="580.0" layoutY="330.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="580.0" layoutY="380.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="580.0" layoutY="430.0" strokeWidth="2.0" />
+      <Line endX="250.0" layoutX="580.0" layoutY="480.0" strokeWidth="2.0" />
+      <ChoiceBox layoutX="603.0" layoutY="598.0" prefHeight="27.0" prefWidth="73.0" />
+      <Label layoutX="682.0" layoutY="602.0" text="squares per side">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="625.0" layoutY="196.0" text="Board Size">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="698.0" layoutY="546.0" text="X" textFill="#8a8a8a">
+         <font>
+            <Font name="System Font" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" layoutX="580.0" layoutY="558.0" stroke="#aeaeae" />
+      <Line endX="100.0" layoutX="728.0" layoutY="558.0" stroke="#aeaeae" />
+      <Label layoutX="542.0" layoutY="392.0" text="X" textFill="#808080">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" layoutX="500.0" layoutY="480.0" rotate="90.0" stroke="#838383" />
+      <Line endX="100.0" layoutX="500.0" layoutY="330.0" rotate="90.0" stroke="#838383" />
+   </children>
 </AnchorPane>
