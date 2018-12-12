@@ -13,7 +13,7 @@ public class Game {
         diceGame, oxGame, slGame, none
     }
 
-    private Player winner;
+    private ArrayList<Player> winner;
     private Player turn;
     private ArrayList<Player> players;
     private Instant startTime;
@@ -30,11 +30,11 @@ public class Game {
         gameRunning = isRunning;
     }
 
-    private Player getWinner() {
+    private ArrayList<Player> getWinner() {
         return this.winner;
     }
 
-    protected void setWinner(Player winner) {
+    protected void setWinner(ArrayList<Player> winner) {
         this.winner = winner;
     }
 

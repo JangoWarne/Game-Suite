@@ -27,28 +27,31 @@ public class DiceGame extends Game {
 
         if(finished) {
             // Find Winner
-            Integer highScore = 0;
-            Player bestPlayer = getPlayers().get(0);
+            ArrayList<Player> winner = getPlayers();
+            Player player1 = getPlayers().get(0);
+            Player player2 = getPlayers().get(1);
 
-            for (Player player : getPlayers()) {
+            try {
+                DicePlayer dicePlayer1 = (DicePlayer) player1;
+                DicePlayer dicePlayer2 = (DicePlayer) player2;
+                Integer player1Score = dicePlayer1.getDice().getNumber();
+                Integer player2Score = dicePlayer2.getDice().getNumber();
+                System.out.println("Player1 = " + player1Score);
+                System.out.println("Player2 = " + player2Score);
 
-                try {
-                    DicePlayer dicePlayer = (DicePlayer) player;
-                    Integer playerScore = dicePlayer.getDice().getNumber();
-
-                    if( playerScore > highScore ) {
-                        highScore = playerScore;
-                        bestPlayer = player;
-                    }
-
-                } catch (ClassCastException e) {
-                    System.out.println("DicePlayer not used for DiceGame");
-                    System.out.println(e);
+                if( player1Score > player2Score ) {
+                    winner.remove( player2 );
+                } else if ( player1Score < player2Score ) {
+                    winner.remove( player1 );
                 }
+
+            } catch (ClassCastException e) {
+                System.out.println("DicePlayer not used for DiceGame");
+                System.out.println(e);
             }
 
             // Set winner
-            setWinner( bestPlayer );
+            setWinner( winner );
         }
 
         return finished;

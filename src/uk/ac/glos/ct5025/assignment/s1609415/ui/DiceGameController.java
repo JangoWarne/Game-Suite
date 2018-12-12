@@ -111,13 +111,19 @@ public class DiceGameController {
     }
 
     private void dice1RegionHandle(MouseEvent event) {
-        // Roll Dice
-        dice1.roll();
+        // Correct player and game is running
+        if((game.getTurn().getName() == Player.PlayerName.player1) && game.isGameRunning()) {
+            // Roll Dice
+            dice1.roll();
+        }
     }
 
     private void dice2RegionHandle(MouseEvent event) {
-        // Roll Dice
-        dice2.roll();
+        // Correct player and game is running
+        if((game.getTurn().getName() == Player.PlayerName.player2) && game.isGameRunning()) {
+            // Roll Dice
+            dice2.roll();
+        }
     }
 
     public void dice1Roll( Integer roll ) {
@@ -134,7 +140,7 @@ public class DiceGameController {
         pause2.setOnFinished(event -> dice1Image.setImage( getImage(roll) ));
 
         PauseTransition pause3 = new PauseTransition( Duration.millis(500) );
-        pause2.setOnFinished(event ->
+        pause3.setOnFinished(event ->
                 // End Turn
                 game.endTurn()
         );
@@ -157,7 +163,7 @@ public class DiceGameController {
         pause2.setOnFinished(event -> dice2Image.setImage( getImage(roll) ));
 
         PauseTransition pause3 = new PauseTransition( Duration.millis(500) );
-        pause2.setOnFinished(event ->
+        pause3.setOnFinished(event ->
                 // End Turn
                 game.endTurn()
         );
@@ -197,6 +203,7 @@ public class DiceGameController {
             default:
                 break;
         }
+        System.out.println("Image = " + imagePath);
 
         return new Image( getClass().getResourceAsStream(imagePath) );
     }

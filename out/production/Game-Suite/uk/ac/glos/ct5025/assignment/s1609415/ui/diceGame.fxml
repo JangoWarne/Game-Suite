@@ -67,7 +67,7 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <TextArea fx:id="winTextArea" editable="false" layoutX="468.0" layoutY="456.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="114.0" prefWidth="465.0" text="player1 Wins!">
+      <TextArea fx:id="winTextArea" editable="false" layoutX="468.0" layoutY="456.0" maxHeight="114.0" prefHeight="114.0" prefWidth="465.0" text="playerX Wins!">
          <font>
             <Font size="60.0" />
          </font>
