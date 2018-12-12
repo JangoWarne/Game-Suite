@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.glos.ct5025.assignment.s1609415.ui.PlayersController">
+   <children>
+      <Rectangle arcHeight="5.0" height="64.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="1400.0" />
+      <Text fill="WHITE" layoutX="624.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Suite" textAlignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Polygon fill="WHITE" layoutX="40.0" layoutY="42.0" rotate="270.0" scaleX="0.36" scaleY="0.3" stroke="WHITE" strokeType="INSIDE">
+        <points>
+          <Double fx:value="-50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="50.0" />
+          <Double fx:value="40.0" />
+          <Double fx:value="0.0" />
+          <Double fx:value="-60.0" />
+        </points>
+      </Polygon>
+      <Rectangle fill="WHITE" height="18.0" layoutX="52.0" layoutY="23.0" stroke="WHITE" strokeType="INSIDE" width="26.0" />
+      <Region fx:id="backRegion" layoutX="19.0" layoutY="8.0" prefHeight="46.0" prefWidth="65.0" />
+      <ChoiceBox fx:id="p1ChoiceBox" layoutX="306.0" layoutY="651.0" prefWidth="150.0" value="Human">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Human" />
+               <String fx:value="Computer" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="284.0" layoutY="412.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="903.0" layoutY="411.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <ChoiceBox fx:id="p2ChoiceBox" layoutX="928.0" layoutY="637.0" prefWidth="150.0" value="Computer">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <String fx:value="Human" />
+               <String fx:value="Computer" />
+            </FXCollections>
+         </items>
+      </ChoiceBox>
+      <Label layoutX="324.0" layoutY="346.0" text="Player 1">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="942.0" layoutY="345.0" text="Player 2">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Button fx:id="doneButton" layoutX="641.0" layoutY="738.0" mnemonicParsing="false" prefWidth="120.0" text="Done">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Pane fx:id="computer1Pane" layoutX="285.0" layoutY="412.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="184.0" fitWidth="184.0" layoutX="8.0" layoutY="8.0">
+               <image>
+                  <Image url="@computer.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="human1Pane" layoutX="284.0" layoutY="415.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="200.0">
+               <image>
+                  <Image url="@human.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="human2Pane" layoutX="903.0" layoutY="412.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="200.0">
+               <image>
+                  <Image url="@human.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="computer2Pane" layoutX="902.0" layoutY="411.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="184.0" fitWidth="184.0" layoutX="8.0" layoutY="8.0">
+               <image>
+                  <Image url="@computer.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.glos.ct5025.assignment.s1609415.ui.DiceGameController">
+   <children>
+      <Rectangle arcHeight="5.0" height="64.0" smooth="false" stroke="BLACK" strokeType="INSIDE" width="1400.0" />
+      <Polygon fill="WHITE" layoutX="41.0" layoutY="43.0" rotate="270.0" scaleX="0.35" scaleY="0.3" stroke="WHITE" strokeType="INSIDE">
+         <points>
+            <Double fx:value="-50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="50.0" />
+            <Double fx:value="40.0" />
+            <Double fx:value="0.0" />
+            <Double fx:value="-60.0" />
+         </points>
+      </Polygon>
+      <Rectangle fill="WHITE" height="18.0" layoutX="52.0" layoutY="24.0" stroke="WHITE" strokeType="INSIDE" width="26.0" />
+      <Region fx:id="backRegion" layoutX="21.0" layoutY="14.0" prefHeight="42.0" prefWidth="62.0" />
+      <Text fill="WHITE" layoutX="622.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Suite" textAlignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+      <Label layoutX="950.0" layoutY="375.0" text="Player 2">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="332.0" layoutY="376.0" text="Player 1">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="dice1Image" layoutX="345.0" layoutY="465.0" scaleX="1.5" scaleY="1.5">
+         <image>
+            <Image url="@dice_blank.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="dice2Image" layoutX="964.0" layoutY="464.0" scaleX="1.5" scaleY="1.5">
+         <image>
+            <Image url="@dice_blank.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="dice1Label" alignment="CENTER" layoutX="335.0" layoutY="455.0" prefHeight="114.0" prefWidth="114.0" text="Click to Roll" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="dice2Label" alignment="CENTER" layoutX="955.0" layoutY="455.0" prefHeight="114.0" prefWidth="114.0" text="Computer" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Region fx:id="dice2Region" layoutX="937.0" layoutY="438.0" prefHeight="147.0" prefWidth="149.0" />
+      <Region fx:id="dice1Region" layoutX="318.0" layoutY="439.0" prefHeight="147.0" prefWidth="149.0" />
+      <Label layoutX="648.0" layoutY="105.0" text="Dice">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="winTextArea" editable="false" layoutX="468.0" layoutY="456.0" maxHeight="114.0" prefHeight="114.0" prefWidth="465.0" text="playerX Wins!">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>
