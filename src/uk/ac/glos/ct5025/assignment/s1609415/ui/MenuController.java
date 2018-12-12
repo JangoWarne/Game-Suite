@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import uk.ac.glos.ct5025.assignment.s1609415.game.DiceGame;
+
 import java.io.IOException;
 
 
@@ -30,9 +33,20 @@ public class MenuController {
     }
 
     private void diceButtonHandle(ActionEvent event) {
+        // create Game
+        DrawUI drawClass = new DrawUI();
+        DiceGame game = new DiceGame( drawClass );
+
         try {
+            // Change Scene
             Scene scene = diceButton.getScene();
-            scene.setRoot(FXMLLoader.load(getClass().getResource("players.fxml")));
+            FXMLLoader loader = new FXMLLoader( getClass().getResource("players.fxml" ) );
+            Pane pane = (Pane) loader.load();
+            scene.setRoot(pane);
+
+            // Add game to controller
+            PlayersController controller = loader.<PlayersController>getController();
+            controller.setGame( game );
         } catch (IOException e) {
             e.printStackTrace();
         }

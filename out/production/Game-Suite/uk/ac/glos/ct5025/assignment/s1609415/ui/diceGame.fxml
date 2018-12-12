@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
@@ -39,32 +40,37 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <ImageView layoutX="345.0" layoutY="465.0" scaleX="1.5" scaleY="1.5">
+      <ImageView fx:id="dice1Image" layoutX="345.0" layoutY="465.0" scaleX="1.5" scaleY="1.5">
          <image>
             <Image url="@dice_blank.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="964.0" layoutY="464.0" scaleX="1.5" scaleY="1.5">
+      <ImageView fx:id="dice2Image" layoutX="964.0" layoutY="464.0" scaleX="1.5" scaleY="1.5">
          <image>
             <Image url="@dice_blank.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="335.0" layoutY="455.0" prefHeight="114.0" prefWidth="114.0" text="Click to Roll" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="dice1Label" alignment="CENTER" layoutX="335.0" layoutY="455.0" prefHeight="114.0" prefWidth="114.0" text="Click to Roll" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="955.0" layoutY="455.0" prefHeight="114.0" prefWidth="114.0" text="Computer" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="dice2Label" alignment="CENTER" layoutX="955.0" layoutY="455.0" prefHeight="114.0" prefWidth="114.0" text="Computer" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Region layoutX="318.0" layoutY="439.0" prefHeight="147.0" prefWidth="149.0" />
-      <Region layoutX="937.0" layoutY="438.0" prefHeight="147.0" prefWidth="149.0" />
+      <Region fx:id="dice2Region" layoutX="937.0" layoutY="438.0" prefHeight="147.0" prefWidth="149.0" />
+      <Region fx:id="dice1Region" layoutX="318.0" layoutY="439.0" prefHeight="147.0" prefWidth="149.0" />
       <Label layoutX="648.0" layoutY="105.0" text="Dice">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
+      <TextArea fx:id="winTextArea" editable="false" layoutX="468.0" layoutY="456.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="114.0" prefWidth="465.0" text="player1 Wins!">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </TextArea>
    </children>
 </AnchorPane>

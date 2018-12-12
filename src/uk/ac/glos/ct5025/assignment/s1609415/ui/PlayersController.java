@@ -15,11 +15,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import uk.ac.glos.ct5025.assignment.s1609415.game.DiceGame;
+import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
+import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
+import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class PlayersController {
+
+    private Game game;
 
     @FXML
     private Region backRegion;
@@ -40,7 +47,7 @@ public class PlayersController {
 
     @FXML
     private void initialize() {
-        // Handle Button event.
+        // Handle UI events
         backRegion.setOnMouseClicked(this::backRegionHandle);
         doneButton.setOnAction(this::doneButtonHandle);
         p1ChoiceBox.setOnAction(this::p1ChoiceBoxHandle);
@@ -48,6 +55,10 @@ public class PlayersController {
 
         computer1Pane.setVisible(false);
         human2Pane.setVisible(false);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     private void backRegionHandle(MouseEvent event) {
@@ -60,11 +71,55 @@ public class PlayersController {
     }
 
     private void doneButtonHandle(ActionEvent event) {
-        try {
-            Scene scene = doneButton.getScene();
-            scene.setRoot(FXMLLoader.load(getClass().getResource("oxSize.fxml")));
-        } catch (IOException e) {
-            e.printStackTrace();
+        // Get Player Types
+        Player.PlayerType player1Type;
+        Player.PlayerType player2Type;
+
+        if(p1ChoiceBox.getValue().toString().equals("Human")) {
+            player1Type = Player.PlayerType.Human;
+        } else {
+            player1Type = Player.PlayerType.Computer;
+        }
+
+        if(p2ChoiceBox.getValue().toString().equals("Human")) {
+            player2Type = Player.PlayerType.Human;
+        } else {
+            player2Type = Player.PlayerType.Computer;
+        }
+
+        // Based on game type
+        if(game.getGameType() == Game.GameType.diceGame) {
+
+            // Add players to game
+            DicePlayer player1 = new DicePlayer(player1Type, Player.PlayerName.player1);
+            DicePlayer player2 = new DicePlayer(player2Type, Player.PlayerName.player2);
+            ArrayList<Player> players = new ArrayList<>();
+            players.add(player1);
+            players.add(player2);
+            game.setPlayers(players);
+
+            try {
+                // Change Scene
+                Scene scene = doneButton.getScene();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("diceGame.fxml"));
+                Pane pane = (Pane) loader.load();
+                scene.setRoot(pane);
+
+                // Add game to controller
+                try {
+                    DiceGameController controller = loader.<DiceGameController>getController();
+                    controller.setGame((DiceGame) game);
+
+                } catch (ClassCastException e) {
+                    System.out.println("DiceGame class not used for dice game");
+                    System.out.println(e);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Do Nothing
         }
     }
 
