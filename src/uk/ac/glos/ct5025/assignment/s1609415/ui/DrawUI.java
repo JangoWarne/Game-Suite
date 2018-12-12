@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class DrawUI {
@@ -28,11 +29,14 @@ public class DrawUI {
         winTextArea = textArea;
     }
 
-    public void drawGameEnd(Player winner) {
+    public void drawGameEnd(ArrayList<Player> winner) {
         // Draw Winner text
+        String text = "Draw";
+        if (winner.size() == 1) {
+            text = winner.get(0).getName().toString() + " Wins!";
+        }
 
         Parent pane = getScene().getRoot();
-        String text = winner.getName().toString() + " Wins!";
         winTextArea.setText( text );
         winTextArea.setMaxHeight( 114 );
         winTextArea.setVisible( true );
