@@ -7,12 +7,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Dice {
 
-    private Integer number;
+    private int number;
     private DiceGameController windowUI;
-    private Player.PlayerName playerName;
+    private Player.playerName playerName;
 
 
-    public Dice(DiceGameController windowUI, Player.PlayerName playerName) {
+    public Dice(DiceGameController windowUI, Player.playerName playerName) {
         this.windowUI = windowUI;
         this.playerName = playerName;
     }
@@ -20,14 +20,14 @@ public class Dice {
     public void roll(){
         this.number = ThreadLocalRandom.current().nextInt(1, 6+1);
 
-        if(playerName == Player.PlayerName.player1) {
+        if(playerName == Player.playerName.player1) {
             windowUI.dice1Roll( this.number );
         } else {
             windowUI.dice2Roll( this.number );
         }
     }
 
-    public Integer getNumber(){
+    public int getNumber(){
         return this.number;
     }
 }

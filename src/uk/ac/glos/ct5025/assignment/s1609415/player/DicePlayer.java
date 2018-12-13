@@ -5,29 +5,29 @@ import uk.ac.glos.ct5025.assignment.s1609415.item.Dice;
 
 public class DicePlayer implements Player {
 
-    private PlayerType playerType;
+    private Player.playerType playerType;
     private Dice dice;
-    private PlayerName name;
+    private playerName name;
     private Game game;
 
 
-    public DicePlayer(PlayerType playerType, PlayerName name) {
+    public DicePlayer(Player.playerType playerType, playerName name) {
         this.playerType = playerType;
         this.name = name;
     }
 
     public void makeMove() {
-        if (getType() == PlayerType.Computer) {
+        if (getType() == Player.playerType.Computer) {
             // Roll Dice
             getDice().roll();
         }
     }
 
-    public PlayerType getType() {
+    public Player.playerType getType() {
         return this.playerType;
     }
 
-    public PlayerName getName() {
+    public playerName getName() {
         return this.name;
     }
 

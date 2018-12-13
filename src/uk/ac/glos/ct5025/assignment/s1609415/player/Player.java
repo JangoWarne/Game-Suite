@@ -4,16 +4,16 @@ import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
 
 public interface Player {
 
-    public enum PlayerType{
+    public enum playerType {
         Human, Computer
     };
 
-    public enum PlayerName{
+    public enum playerName {
         player1, player2
     };
 
     public void makeMove();
-    public PlayerType getType();
-    public PlayerName getName();
+    public playerType getType();
+    public playerName getName();
     public void setGame(Game game);
 }

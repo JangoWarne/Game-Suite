@@ -1,7 +1,8 @@
 package uk.ac.glos.ct5025.assignment.s1609415.game;
 
+import uk.ac.glos.ct5025.assignment.s1609415.item.Board;
 import uk.ac.glos.ct5025.assignment.s1609415.item.Dice;
-import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
+import uk.ac.glos.ct5025.assignment.s1609415.item.SLSquare;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
 import uk.ac.glos.ct5025.assignment.s1609415.ui.DrawUI;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class SLGame extends Game {
 
     private ArrayList<Dice> dice;
+    private Board board;
 
 
     public SLGame(DrawUI drawClass, ArrayList<Dice> dice, ArrayList<Player> players) {
@@ -26,30 +28,28 @@ public class SLGame extends Game {
         return this.dice;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
     protected void setupGame() {
         // Setup UI
+        board = new Board( 10 );
 
         // Setup Players
-        Integer index = 0;
-        Boolean multipleDice = (getPlayers().size() == getDice().size());
 
-        for (Player player : getPlayers()) {
+    }
 
-            try {
-                SLPlayer slPlayer = (SLPlayer) player;
+    protected boolean isEnd() {
+        // End if there is a player on the last square
+        SLSquare lastSquare = getBoard().getSLSquare(100);
+        if(lastSquare.hasPlayer()) {
+            // Set winner
+            ArrayList<Player> winner = new ArrayList<>();
+            winner.add( lastSquare.getPlayer() );
+            setWinner( winner );
 
-                if (multipleDice) {
-                    // use one dice per player
-                    slPlayer.setDice(getDice().get(index));
-                    index += 1;
-                } else {
-                    // use one dice for all players
-                    slPlayer.setDice(getDice().get(0));
-                }
-            } catch (ClassCastException e) {
-                System.out.println("SLPlayer not used for SLGame");
-                System.out.println(e);
-            }
+            return true;
         }
     }
 }

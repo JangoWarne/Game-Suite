@@ -2,23 +2,15 @@ package uk.ac.glos.ct5025.assignment.s1609415.ui;
 
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
 import uk.ac.glos.ct5025.assignment.s1609415.game.DiceGame;
 import uk.ac.glos.ct5025.assignment.s1609415.item.Dice;
 import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
@@ -71,8 +63,8 @@ public class DiceGameController {
         dice2Region.setOnMouseClicked(this::dice2RegionHandle);
 
         // Create Dice
-        dice1 = new Dice(this, Player.PlayerName.player1);
-        dice2 = new Dice(this, Player.PlayerName.player2);
+        dice1 = new Dice(this, Player.playerName.player1);
+        dice2 = new Dice(this, Player.playerName.player2);
     }
 
     public void setGame(DiceGame game) {
@@ -111,24 +103,28 @@ public class DiceGameController {
     }
 
     private void dice1RegionHandle(MouseEvent event) {
-        // Correct player and game is running
-        if((game.getTurn().getName() == Player.PlayerName.player1) && game.isGameRunning()) {
+        // Check correct player and game is running
+        if((game.getTurn().getName() == Player.playerName.player1)
+                && game.isGameRunning()
+                && (game.getTurn().getType() == Player.playerType.Human)) {
             // Roll Dice
             dice1.roll();
         }
     }
 
     private void dice2RegionHandle(MouseEvent event) {
-        // Correct player and game is running
-        if((game.getTurn().getName() == Player.PlayerName.player2) && game.isGameRunning()) {
+        // Check correct player and game is running
+        if((game.getTurn().getName() == Player.playerName.player2)
+                && game.isGameRunning()
+                && (game.getTurn().getType() == Player.playerType.Human)) {
             // Roll Dice
             dice2.roll();
         }
     }
 
-    public void dice1Roll( Integer roll ) {
-        Integer num1 = ThreadLocalRandom.current().nextInt(1, 6+1);
-        Integer num2 = ThreadLocalRandom.current().nextInt(1, 6+1);
+    public void dice1Roll( int roll ) {
+        int num1 = ThreadLocalRandom.current().nextInt(1, 6+1);
+        int num2 = ThreadLocalRandom.current().nextInt(1, 6+1);
 
         dice1Label.setText("");
         dice1Image.setImage( getImage(num1) );
@@ -149,9 +145,9 @@ public class DiceGameController {
         sequence.play();
     }
 
-    public void dice2Roll( Integer roll ) {
-        Integer num1 = ThreadLocalRandom.current().nextInt(1, 6+1);
-        Integer num2 = ThreadLocalRandom.current().nextInt(1, 6+1);
+    public void dice2Roll( int roll ) {
+        int num1 = ThreadLocalRandom.current().nextInt(1, 6+1);
+        int num2 = ThreadLocalRandom.current().nextInt(1, 6+1);
 
         dice2Label.setText("");
         dice2Image.setImage( getImage(num1) );
@@ -172,7 +168,7 @@ public class DiceGameController {
         sequence.play();
     }
 
-    private Image getImage(Integer roll ) {
+    private Image getImage(int roll ) {
         String imagePath = "dice_blank.png";
 
         switch (roll){
@@ -203,15 +199,14 @@ public class DiceGameController {
             default:
                 break;
         }
-        System.out.println("Image = " + imagePath);
 
         return new Image( getClass().getResourceAsStream(imagePath) );
     }
 
-    private String getDiceText(Player.PlayerType playerType) {
+    private String getDiceText(Player.playerType playerType) {
         String text = "";
 
-        if(playerType == Player.PlayerType.Human) {
+        if(playerType == Player.playerType.Human) {
             text = "Click to Roll";
         } else {
             text = "Computer";

@@ -1,6 +1,5 @@
 package uk.ac.glos.ct5025.assignment.s1609415.game;
 
-import uk.ac.glos.ct5025.assignment.s1609415.item.Dice;
 import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
 import uk.ac.glos.ct5025.assignment.s1609415.ui.DrawUI;
@@ -14,16 +13,9 @@ public class DiceGame extends Game {
         setDrawClass( drawClass );
     }
 
-    protected void setupGame() {
-        // Setup UI
-
-        // Setup Players
-
-    }
-
     protected boolean isEnd() {
         // Check game state to see if it should finish
-        boolean finished = getTurn().getName() == Player.PlayerName.player1;
+        boolean finished = ( getTurn().getName() == Player.playerName.player1 );
 
         if(finished) {
             // Find Winner
@@ -34,10 +26,8 @@ public class DiceGame extends Game {
             try {
                 DicePlayer dicePlayer1 = (DicePlayer) player1;
                 DicePlayer dicePlayer2 = (DicePlayer) player2;
-                Integer player1Score = dicePlayer1.getDice().getNumber();
-                Integer player2Score = dicePlayer2.getDice().getNumber();
-                System.out.println("Player1 = " + player1Score);
-                System.out.println("Player2 = " + player2Score);
+                int player1Score = dicePlayer1.getDice().getNumber();
+                int player2Score = dicePlayer2.getDice().getNumber();
 
                 if( player1Score > player2Score ) {
                     winner.remove( player2 );
@@ -57,8 +47,8 @@ public class DiceGame extends Game {
         return finished;
     }
 
-    public GameType getGameType() {
-        return GameType.diceGame;
+    public gameType getGameType() {
+        return gameType.diceGame;
     }
 
 }

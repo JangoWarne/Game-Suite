@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Game {
 
-    public enum GameType {
+    public enum gameType {
         diceGame, oxGame, slGame, none
     }
 
@@ -76,7 +76,7 @@ public class Game {
 
     public void endTurn() {
         // Find current player in arrayList
-        Integer index = getPlayers().indexOf(getTurn());
+        int index = getPlayers().indexOf(getTurn());
 
         // Set player to next player in arrayList
         if(index + 1 > getPlayers().size() - 1) {
@@ -120,7 +120,7 @@ public class Game {
         return true;
     }
 
-    public void endGame() {
+    private void endGame() {
         // End game
         setGameRunning(false);
         stopClock();
@@ -129,7 +129,7 @@ public class Game {
         getDrawClass().drawGameEnd( getWinner() );
     }
 
-    public GameType getGameType() {
-        return GameType.none;
+    public gameType getGameType() {
+        return gameType.none;
     }
 }

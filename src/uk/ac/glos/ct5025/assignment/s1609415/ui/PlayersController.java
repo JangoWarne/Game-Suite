@@ -1,8 +1,5 @@
 package uk.ac.glos.ct5025.assignment.s1609415.ui;
 
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +7,6 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -72,27 +67,27 @@ public class PlayersController {
 
     private void doneButtonHandle(ActionEvent event) {
         // Get Player Types
-        Player.PlayerType player1Type;
-        Player.PlayerType player2Type;
+        Player.playerType player1Type;
+        Player.playerType player2Type;
 
         if(p1ChoiceBox.getValue().toString().equals("Human")) {
-            player1Type = Player.PlayerType.Human;
+            player1Type = Player.playerType.Human;
         } else {
-            player1Type = Player.PlayerType.Computer;
+            player1Type = Player.playerType.Computer;
         }
 
         if(p2ChoiceBox.getValue().toString().equals("Human")) {
-            player2Type = Player.PlayerType.Human;
+            player2Type = Player.playerType.Human;
         } else {
-            player2Type = Player.PlayerType.Computer;
+            player2Type = Player.playerType.Computer;
         }
 
         // Based on game type
-        if(game.getGameType() == Game.GameType.diceGame) {
+        if(game.getGameType() == Game.gameType.diceGame) {
 
             // Add players to game
-            DicePlayer player1 = new DicePlayer(player1Type, Player.PlayerName.player1);
-            DicePlayer player2 = new DicePlayer(player2Type, Player.PlayerName.player2);
+            DicePlayer player1 = new DicePlayer(player1Type, Player.playerName.player1);
+            DicePlayer player2 = new DicePlayer(player2Type, Player.playerName.player2);
             ArrayList<Player> players = new ArrayList<>();
             players.add(player1);
             players.add(player2);
