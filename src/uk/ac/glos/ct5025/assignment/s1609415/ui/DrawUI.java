@@ -12,21 +12,34 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
+import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
+import uk.ac.glos.ct5025.assignment.s1609415.item.OXSquare;
+import uk.ac.glos.ct5025.assignment.s1609415.player.OXPlayer;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class DrawUI {
 
     private Scene currentScene;
     private TextArea winTextArea;
+    private TilePane boardTilePane;
+    private Game game;
 
-    public void setScene(Scene scene, TextArea textArea) {
+    public void setScene( Game game, Scene scene, TextArea textArea, TilePane tilePane) {
         currentScene = scene;
         winTextArea = textArea;
+        boardTilePane = tilePane;
+        this.game = game;
     }
 
     public void drawGameEnd(ArrayList<Player> winner) {
@@ -57,7 +70,88 @@ public class DrawUI {
         }
     }
 
+    public void drawPiece( OXSquare square ) {
+        String text = String.valueOf( square.getPiece() );
+        square.getButton().setText( text );
+    }
+
+    public void drawOXBoard(ArrayList<ArrayList<OXSquare>> squares2D, int edgeSize) {
+        // set grid size
+        resizeTilePane( edgeSize );
+
+        // for each square
+        for (ArrayList<OXSquare> squares1D: squares2D) {
+            for (OXSquare square: squares1D) {
+
+                // Add button to UI
+                drawSquare( square, edgeSize );
+            }
+        }
+    }
+
+    private void resizeTilePane( int edgeSize ) {
+        getBoardTilePane().setPrefRows(edgeSize);
+        getBoardTilePane().setPrefColumns(edgeSize);
+    }
+
+    private void drawSquare( OXSquare square, int edgeSize ) {
+        // add square to gridpane
+        Button button = new Button();
+        double buttonSize = (600 / (double) edgeSize) - 1;
+        int textSize;
+
+        if(edgeSize == 3) {
+            textSize = 70;
+        } else if(edgeSize == 4) {
+            textSize = 60;
+        } else if(edgeSize == 5) {
+            textSize = 50;
+        } else if(edgeSize == 6) {
+            textSize = 40;
+        } else if(edgeSize == 7) {
+            textSize = 30;
+        } else if(edgeSize == 8) {
+            textSize = 25;
+        } else if(edgeSize == 9) {
+            textSize = 20;
+        } else {
+            textSize = 15;
+        }
+
+        button.setPrefSize( buttonSize, buttonSize);
+        button.setFont( Font.font("System", FontWeight.BOLD, textSize) );
+        button.setOnAction(e -> squareButtonHandle(square));
+
+        square.setButton(button);
+        getBoardTilePane().getChildren().add( button );
+    }
+
+    private void squareButtonHandle(OXSquare square) {
+        // Check correct player and game is running
+        if((getGame().getTurn().getName() == Player.playerName.player1)
+                && getGame().isGameRunning()
+                && (getGame().getTurn().getType() == Player.playerType.Human)) {
+
+            try {
+                // select square
+                square.select((OXPlayer) getGame().getTurn());
+
+            } catch (ClassCastException e) {
+                System.out.println("OXPlayer not used for O&X Game");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private TilePane getBoardTilePane() {
+        return boardTilePane;
+    }
+
     private Scene getScene(){
         return this.currentScene;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

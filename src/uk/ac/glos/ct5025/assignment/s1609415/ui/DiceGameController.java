@@ -10,8 +10,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.TilePane;
 import uk.ac.glos.ct5025.assignment.s1609415.game.DiceGame;
+import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
 import uk.ac.glos.ct5025.assignment.s1609415.item.Dice;
 import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
@@ -23,64 +26,57 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class DiceGameController {
 
-    private DiceGame game;
+    private Game game;
     private Dice dice1;
     private Dice dice2;
 
     @FXML
-    private Region backRegion;
-
+    protected Region backRegion;
     @FXML
-    private Region dice1Region;
-
+    protected Region dice1Region;
     @FXML
-    private Region dice2Region;
-
+    protected Region dice2Region;
     @FXML
-    private ImageView dice1Image;
-
+    protected ImageView dice1Image;
     @FXML
-    private ImageView dice2Image;
-
+    protected ImageView dice2Image;
     @FXML
-    private Label dice1Label;
-
+    protected Label dice1Label;
     @FXML
-    private Label dice2Label;
-
+    protected Label dice2Label;
     @FXML
-    private TextArea winTextArea;
+    protected TextArea winTextArea;
 
 
 
     @FXML
     private void initialize() {
-        winTextArea.setVisible(false);
+        getWinTextArea().setVisible(false);
 
         // Handle UI events
-        backRegion.setOnMouseClicked(this::backRegionHandle);
-        dice1Region.setOnMouseClicked(this::dice1RegionHandle);
-        dice2Region.setOnMouseClicked(this::dice2RegionHandle);
+        getBackRegion().setOnMouseClicked(this::backRegionHandle);
+        getDice1Region().setOnMouseClicked(this::dice1RegionHandle);
+        getDice2Region().setOnMouseClicked(this::dice2RegionHandle);
 
         // Create Dice
-        dice1 = new Dice(this, Player.playerName.player1);
-        dice2 = new Dice(this, Player.playerName.player2);
+        setDice1( new Dice(this, Player.playerName.player1) );
+        setDice2( new Dice(this, Player.playerName.player2) );
     }
 
-    public void setGame(DiceGame game) {
+    public void setGameClass(Game game) {
         // Set DrawUI scene
-        game.getDrawClass().setScene( backRegion.getScene(), winTextArea );
+        game.getDrawClass().setScene( game, getBackRegion().getScene(), getWinTextArea(), new TilePane());
 
         // Give Players Dice
         try {
             DicePlayer player1 = (DicePlayer) game.getPlayers().get(0);
             DicePlayer player2 = (DicePlayer) game.getPlayers().get(1);
-            player1.setDice( dice1 );
-            player2.setDice( dice2 );
+            player1.setDice( getDice1() );
+            player2.setDice( getDice2() );
 
             // Set Dice Text
-            dice1Label.setText( getDiceText(player1.getType()) );
-            dice2Label.setText( getDiceText(player2.getType()) );
+            getDice1Label().setText( getDiceText(player1.getType()) );
+            getDice2Label().setText( getDiceText(player2.getType()) );
 
         } catch (ClassCastException e) {
             System.out.println("DicePlayer not used for DiceGame");
@@ -88,13 +84,13 @@ public class DiceGameController {
         }
 
         // Start Game
-        this.game = game;
-        this.game.startGame();
+        setGame(game);
+        getGame().startGame();
     }
 
-    private void backRegionHandle(MouseEvent event) {
+    protected void backRegionHandle(MouseEvent event) {
         try {
-            Scene scene = backRegion.getScene();
+            Scene scene = getBackRegion().getScene();
             scene.setRoot(FXMLLoader.load(getClass().getResource("menu.fxml")));
 
         } catch (IOException e) {
@@ -102,21 +98,21 @@ public class DiceGameController {
         }
     }
 
-    private void dice1RegionHandle(MouseEvent event) {
+    protected void dice1RegionHandle(MouseEvent event) {
         // Check correct player and game is running
-        if((game.getTurn().getName() == Player.playerName.player1)
-                && game.isGameRunning()
-                && (game.getTurn().getType() == Player.playerType.Human)) {
+        if((getGame().getTurn().getName() == Player.playerName.player1)
+                && getGame().isGameRunning()
+                && (getGame().getTurn().getType() == Player.playerType.Human)) {
             // Roll Dice
             dice1.roll();
         }
     }
 
-    private void dice2RegionHandle(MouseEvent event) {
+    protected void dice2RegionHandle(MouseEvent event) {
         // Check correct player and game is running
-        if((game.getTurn().getName() == Player.playerName.player2)
-                && game.isGameRunning()
-                && (game.getTurn().getType() == Player.playerType.Human)) {
+        if((getGame().getTurn().getName() == Player.playerName.player2)
+                && getGame().isGameRunning()
+                && (getGame().getTurn().getType() == Player.playerType.Human)) {
             // Roll Dice
             dice2.roll();
         }
@@ -126,19 +122,19 @@ public class DiceGameController {
         int num1 = ThreadLocalRandom.current().nextInt(1, 6+1);
         int num2 = ThreadLocalRandom.current().nextInt(1, 6+1);
 
-        dice1Label.setText("");
-        dice1Image.setImage( getImage(num1) );
+        getDice1Label().setText("");
+        getDice1Image().setImage( getImage(num1) );
 
         PauseTransition pause = new PauseTransition( Duration.millis(500) );
-        pause.setOnFinished(event -> dice1Image.setImage( getImage(num2) ));
+        pause.setOnFinished(event -> getDice1Image().setImage( getImage(num2) ));
 
         PauseTransition pause2 = new PauseTransition( Duration.millis(500) );
-        pause2.setOnFinished(event -> dice1Image.setImage( getImage(roll) ));
+        pause2.setOnFinished(event -> getDice1Image().setImage( getImage(roll) ));
 
         PauseTransition pause3 = new PauseTransition( Duration.millis(500) );
         pause3.setOnFinished(event ->
                 // End Turn
-                game.endTurn()
+                getGame().endTurn()
         );
 
         SequentialTransition sequence = new SequentialTransition( pause, pause2, pause3 );
@@ -149,19 +145,19 @@ public class DiceGameController {
         int num1 = ThreadLocalRandom.current().nextInt(1, 6+1);
         int num2 = ThreadLocalRandom.current().nextInt(1, 6+1);
 
-        dice2Label.setText("");
-        dice2Image.setImage( getImage(num1) );
+        getDice2Label().setText("");
+        getDice2Image().setImage( getImage(num1) );
 
         PauseTransition pause = new PauseTransition( Duration.millis(500) );
-        pause.setOnFinished(event -> dice2Image.setImage( getImage(num2) ));
+        pause.setOnFinished(event -> getDice2Image().setImage( getImage(num2) ));
 
         PauseTransition pause2 = new PauseTransition( Duration.millis(500) );
-        pause2.setOnFinished(event -> dice2Image.setImage( getImage(roll) ));
+        pause2.setOnFinished(event -> getDice2Image().setImage( getImage(roll) ));
 
         PauseTransition pause3 = new PauseTransition( Duration.millis(500) );
         pause3.setOnFinished(event ->
                 // End Turn
-                game.endTurn()
+                getGame().endTurn()
         );
 
         SequentialTransition sequence = new SequentialTransition( pause, pause2, pause3 );
@@ -203,7 +199,7 @@ public class DiceGameController {
         return new Image( getClass().getResourceAsStream(imagePath) );
     }
 
-    private String getDiceText(Player.playerType playerType) {
+    protected String getDiceText(Player.playerType playerType) {
         String text = "";
 
         if(playerType == Player.playerType.Human) {
@@ -213,5 +209,61 @@ public class DiceGameController {
         }
 
         return text;
+    }
+
+    public Dice getDice1() {
+        return dice1;
+    }
+
+    public void setDice1(Dice dice1) {
+        this.dice1 = dice1;
+    }
+
+    public Dice getDice2() {
+        return dice2;
+    }
+
+    public void setDice2(Dice dice2) {
+        this.dice2 = dice2;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    public Region getBackRegion() {
+        return backRegion;
+    }
+
+    public TextArea getWinTextArea() {
+        return winTextArea;
+    }
+
+    public ImageView getDice1Image() {
+        return dice1Image;
+    }
+
+    public ImageView getDice2Image() {
+        return dice2Image;
+    }
+
+    public Label getDice1Label() {
+        return dice1Label;
+    }
+
+    public Region getDice1Region() {
+        return dice1Region;
+    }
+
+    public Label getDice2Label() {
+        return dice2Label;
+    }
+
+    public Region getDice2Region() {
+        return dice2Region;
     }
 }

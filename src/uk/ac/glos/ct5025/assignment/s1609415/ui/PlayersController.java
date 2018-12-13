@@ -12,8 +12,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import uk.ac.glos.ct5025.assignment.s1609415.game.DiceGame;
 import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
+import uk.ac.glos.ct5025.assignment.s1609415.game.OXGame;
+import uk.ac.glos.ct5025.assignment.s1609415.game.SLGame;
 import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
+import uk.ac.glos.ct5025.assignment.s1609415.player.OXPlayer;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
+import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -86,11 +90,9 @@ public class PlayersController {
         if(game.getGameType() == Game.gameType.diceGame) {
 
             // Add players to game
-            DicePlayer player1 = new DicePlayer(player1Type, Player.playerName.player1);
-            DicePlayer player2 = new DicePlayer(player2Type, Player.playerName.player2);
             ArrayList<Player> players = new ArrayList<>();
-            players.add(player1);
-            players.add(player2);
+            players.add( new DicePlayer(player1Type, Player.playerName.player1) );
+            players.add( new DicePlayer(player2Type, Player.playerName.player2) );
             game.setPlayers(players);
 
             try {
@@ -101,20 +103,67 @@ public class PlayersController {
                 scene.setRoot(pane);
 
                 // Add game to controller
+                DiceGameController controller = loader.getController();
+                controller.setGameClass(game);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        } else if(game.getGameType() == Game.gameType.oxGame) {
+
+            // Add players to game
+            ArrayList<Player> players = new ArrayList<>();
+            players.add( new OXPlayer( game, player1Type, Player.playerName.player1) );
+            players.add( new OXPlayer( game, player2Type, Player.playerName.player2) );
+            game.setPlayers(players);
+
+            try {
+                // Change Scene
+                Scene scene = doneButton.getScene();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("oxSize.fxml"));
+                Pane pane = (Pane) loader.load();
+                scene.setRoot(pane);
+
+                // Add game to controller
                 try {
-                    DiceGameController controller = loader.<DiceGameController>getController();
-                    controller.setGame((DiceGame) game);
+                    OXSizeController controller = loader.getController();
+                    controller.setGame((OXGame) game);
 
                 } catch (ClassCastException e) {
-                    System.out.println("DiceGame class not used for dice game");
+                    System.out.println("OXGame class not used for O&X game");
                     System.out.println(e);
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+        } else if(game.getGameType() == Game.gameType.slGame) {
+
+            // Add players to game
+            ArrayList<Player> players = new ArrayList<>();
+            players.add( new SLPlayer(player1Type, Player.playerName.player1) );
+            players.add( new SLPlayer(player2Type, Player.playerName.player2) );
+            game.setPlayers(players);
+
+            try {
+                // Change Scene
+                Scene scene = doneButton.getScene();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("slGame.fxml"));
+                Pane pane = (Pane) loader.load();
+                scene.setRoot(pane);
+
+                // Add game to controller
+                SLGameController controller = loader.getController();
+                controller.setGameClass(game);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } else {
-            // Do Nothing
+            System.out.println("Invalid game type");
         }
     }
 

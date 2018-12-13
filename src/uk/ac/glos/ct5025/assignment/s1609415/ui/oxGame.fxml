@@ -33,5 +33,11 @@
             <Font size="50.0" />
          </font>
       </Label>
+      <TilePane fx:id="boardTilePane" layoutX="400.0" layoutY="250.0" prefHeight="600.0" prefWidth="600.0" />
+      <TextArea fx:id="winTextArea" editable="false" layoutX="488.0" layoutY="476.0" maxHeight="114.0" prefHeight="114.0" prefWidth="465.0" text="playerX Wins!">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </TextArea>
    </children>
 </AnchorPane>

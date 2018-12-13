@@ -1,5 +1,8 @@
 package uk.ac.glos.ct5025.assignment.s1609415.item;
 
+import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
+import uk.ac.glos.ct5025.assignment.s1609415.player.Player.playerName;
+
 import java.util.ArrayList;
 
 public class Line {
@@ -15,12 +18,15 @@ public class Line {
     private OXSquare endPoint;
     private ArrayList<OXSquare> squares;
     private Line.direction lineDirection;
+    private playerName playerName;
 
 
-    public Line(OXSquare startPoint, OXSquare endPoint, Line.direction direction) {
+    public Line(playerName playerName, OXSquare startPoint, OXSquare endPoint, Line.direction direction) {
+        this.squares = new ArrayList<>();
         setStartPoint( startPoint );
         setEndPoint( endPoint );
         this.lineDirection = direction;
+        this.playerName = playerName;
     }
 
     public OXSquare getStartPoint() {
@@ -46,8 +52,8 @@ public class Line {
     }
 
     public int getLength() {
-        int rows = getEndPoint().getRow() - getStartPoint().getRow();
-        int columns = getEndPoint().getColumn() - getStartPoint().getColumn();
+        int rows = getEndPoint().getRow() - getStartPoint().getRow() + 1;
+        int columns = getEndPoint().getColumn() - getStartPoint().getColumn() + 1;
 
         if( getDirection() == direction.vertical ) {
             return rows;
@@ -62,5 +68,9 @@ public class Line {
 
     public ArrayList<OXSquare> getSquares() {
         return squares;
+    }
+
+    public Player.playerName getPlayerName() {
+        return playerName;
     }
 }

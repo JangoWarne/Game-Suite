@@ -13,11 +13,18 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
+import uk.ac.glos.ct5025.assignment.s1609415.game.OXGame;
+import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
 
 import java.io.IOException;
 
+import static java.lang.Integer.parseInt;
+
 
 public class OXSizeController {
+
+    private OXGame game;
 
     @FXML
     private Region backRegion;
@@ -41,6 +48,10 @@ public class OXSizeController {
         yAxisLabel.setText("3");
     }
 
+    public void setGame(OXGame game) {
+        this.game = game;
+    }
+
     private void backRegionHandle(MouseEvent event) {
         try {
             Scene scene = backRegion.getScene();
@@ -51,9 +62,26 @@ public class OXSizeController {
     }
 
     private void doneButtonHandle(ActionEvent event) {
+        // get board size
+        int boardSize = parseInt(lengthChoiceBox.getValue().toString());
+        int winLength = 3;
+        if (boardSize > 3) {
+            winLength = 4;
+        }
+        game.setEdgeSize(boardSize);
+        game.setWinLength(winLength);
+
         try {
+            // Change Scene
             Scene scene = doneButton.getScene();
-            scene.setRoot(FXMLLoader.load(getClass().getResource("oxGame.fxml")));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("oxGame.fxml"));
+            Pane pane = (Pane) loader.load();
+            scene.setRoot(pane);
+
+            // Add game to controller
+            OXGameController controller = loader.getController();
+            controller.setGame(game);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

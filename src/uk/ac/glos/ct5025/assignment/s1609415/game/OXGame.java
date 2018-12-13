@@ -3,8 +3,10 @@ package uk.ac.glos.ct5025.assignment.s1609415.game;
 import uk.ac.glos.ct5025.assignment.s1609415.item.Board;
 import uk.ac.glos.ct5025.assignment.s1609415.player.Player;
 import uk.ac.glos.ct5025.assignment.s1609415.ui.DrawUI;
+import uk.ac.glos.ct5025.assignment.s1609415.item.Line.endsFree;
 
 import java.util.ArrayList;
+
 
 public class OXGame extends Game{
 
@@ -13,9 +15,8 @@ public class OXGame extends Game{
     private Board board;
 
 
-    public OXGame(DrawUI drawClass, ArrayList<Player> players) {
+    public OXGame(DrawUI drawClass) {
         setDrawClass( drawClass );
-        setPlayers( players );
     }
 
     public void setWinLength(int winLength) {
@@ -40,7 +41,7 @@ public class OXGame extends Game{
 
     protected void setupGame() {
         // Setup UI
-        board = new Board( getEdgeSize() );
+        board = new Board( this, getEdgeSize() );
 
         // Setup Players
 
@@ -48,18 +49,24 @@ public class OXGame extends Game{
 
     protected boolean isEnd() {
         // Check game state to see if it should finish
-        boolean player1Finished = (getBoard().getLines(Player.playerName.player1, getWinLength(), any).size() > 0);
-        boolean player2Finished = (getBoard().getLines(Player.playerName.player2, getWinLength(), any).size() > 0);
+        boolean player1Finished = (getBoard().getLines(Player.playerName.player1, getWinLength(), endsFree.any).size() > 0);
+        boolean player2Finished = (getBoard().getLines(Player.playerName.player2, getWinLength(), endsFree.any).size() > 0);
+        boolean fullBoard = (getBoard().getEmptySquare() == null);
         boolean finished = ( player1Finished || player2Finished );
 
-        if(finished) {
+        if(fullBoard) {
+            // Draw
+            setWinner( getPlayers() );
+            finished = true;
+
+        } else if(finished) {
             // Find Winner
             ArrayList<Player> winner = new ArrayList<>();
 
             if (player1Finished){
                 winner.add( getPlayers().get(0) );
             } else {
-                winner.add( getPlayers().get(0) );
+                winner.add( getPlayers().get(1) );
             }
 
             // Set winner
@@ -67,5 +74,9 @@ public class OXGame extends Game{
         }
 
         return finished;
+    }
+
+    public gameType getGameType() {
+        return gameType.oxGame;
     }
 }

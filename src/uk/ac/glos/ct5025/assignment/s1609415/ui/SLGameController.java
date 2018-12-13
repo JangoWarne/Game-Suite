@@ -1,36 +1,63 @@
 package uk.ac.glos.ct5025.assignment.s1609415.ui;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
+import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
+import javafx.scene.layout.TilePane;
 
-import java.io.IOException;
 
-
-public class SLGameController {
-
-    @FXML
-    private Region backRegion;
-
+public class SLGameController extends DiceGameController {
 
     @FXML
-    private void initialize() {
-        // Handle Button event.
-        backRegion.setOnMouseClicked(this::backRegionHandle);
-    }
+    protected Region backRegion;
+    @FXML
+    protected Region dice1Region;
+    @FXML
+    protected Region dice2Region;
+    @FXML
+    protected ImageView dice1Image;
+    @FXML
+    protected ImageView dice2Image;
+    @FXML
+    protected Label dice1Label;
+    @FXML
+    protected Label dice2Label;
+    @FXML
+    protected TextArea winTextArea;
+    @FXML
+    private GridPane boardGridPane;
 
-    private void backRegionHandle(MouseEvent event) {
+
+    public void setGameClass(Game game) {
+        // Set DrawUI scene
+        game.getDrawClass().setScene( game, backRegion.getScene(), winTextArea, new TilePane() );
+
+        // Give Players Dice
         try {
-            Scene scene = backRegion.getScene();
-            scene.setRoot(FXMLLoader.load(getClass().getResource("menu.fxml")));
-        } catch (IOException e) {
-            e.printStackTrace();
+            SLPlayer player1 = (SLPlayer) game.getPlayers().get(0);
+            SLPlayer player2 = (SLPlayer) game.getPlayers().get(1);
+            player1.setDice( getDice1() );
+            player2.setDice( getDice2() );
+
+            // Set Dice Text
+            getDice1Label().setText( getDiceText(player1.getType()) );
+            getDice2Label().setText( getDiceText(player2.getType()) );
+
+        } catch (ClassCastException e) {
+            System.out.println("SLPlayer not used for S&L Game");
+            System.out.println(e);
         }
+
+        // Start Game
+        setGame(game);
+        getGame().startGame();
     }
+
+
+
 }

@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import uk.ac.glos.ct5025.assignment.s1609415.game.DiceGame;
+import uk.ac.glos.ct5025.assignment.s1609415.game.OXGame;
+import uk.ac.glos.ct5025.assignment.s1609415.game.SLGame;
 
 import java.io.IOException;
 
@@ -45,7 +47,7 @@ public class MenuController {
             scene.setRoot(pane);
 
             // Add game to controller
-            PlayersController controller = loader.<PlayersController>getController();
+            PlayersController controller = loader.getController();
             controller.setGame( game );
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,18 +55,38 @@ public class MenuController {
     }
 
     private void oxButtonHandle(ActionEvent event) {
+        // create Game
+        DrawUI drawClass = new DrawUI();
+        OXGame game = new OXGame( drawClass );
+
         try {
-            Scene scene = diceButton.getScene();
-            scene.setRoot(FXMLLoader.load(getClass().getResource("players.fxml")));
+            Scene scene = oxButton.getScene();
+            FXMLLoader loader = new FXMLLoader( getClass().getResource("players.fxml" ) );
+            Pane pane = (Pane) loader.load();
+            scene.setRoot(pane);
+
+            // Add game to controller
+            PlayersController controller = loader.getController();
+            controller.setGame( game );
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void slButtonHandle(ActionEvent event) {
+        // create Game
+        DrawUI drawClass = new DrawUI();
+        SLGame game = new SLGame( drawClass );
+
         try {
-            Scene scene = diceButton.getScene();
-            scene.setRoot(FXMLLoader.load(getClass().getResource("players.fxml")));
+            Scene scene = slButton.getScene();
+            FXMLLoader loader = new FXMLLoader( getClass().getResource("players.fxml" ) );
+            Pane pane = (Pane) loader.load();
+            scene.setRoot(pane);
+
+            // Add game to controller
+            PlayersController controller = loader.getController();
+            controller.setGame( game );
         } catch (IOException e) {
             e.printStackTrace();
         }

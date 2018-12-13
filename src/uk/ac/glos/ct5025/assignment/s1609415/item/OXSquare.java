@@ -1,7 +1,9 @@
 package uk.ac.glos.ct5025.assignment.s1609415.item;
 
+import javafx.scene.control.Button;
 import uk.ac.glos.ct5025.assignment.s1609415.game.OXGame;
 import uk.ac.glos.ct5025.assignment.s1609415.player.OXPlayer;
+import uk.ac.glos.ct5025.assignment.s1609415.player.Player.playerName;
 
 import java.util.ArrayList;
 
@@ -13,9 +15,11 @@ public class OXSquare implements Square {
     private char piece;
     private OXGame game;
     private ArrayList<Line> lines;
+    private Button button;
 
 
     public OXSquare(OXGame oxGame, Location location, int row, int column) {
+        this.lines = new ArrayList<>();
         this.game = oxGame;
         this.location = location;
         this.row = row;
@@ -25,6 +29,7 @@ public class OXSquare implements Square {
     public void select( OXPlayer player ) {
         // Check game is running
         if(getGame().isGameRunning()) {
+            System.out.println(player.getName() + " " + getColumn() + " " + getRow());
 
             // Check if square is empty
             if (isEmpty()) {
@@ -33,17 +38,17 @@ public class OXSquare implements Square {
                 getGame().getDrawClass().drawPiece(this);
 
                 // Add to adjacent lines
-                mergeLines(Line.direction.vertical);
-                mergeLines(Line.direction.horizontal);
-                mergeLines(Line.direction.diagonalBwd);
-                mergeLines(Line.direction.diagonalFwd);
+                mergeLines(player.getName(), Line.direction.vertical);
+                mergeLines(player.getName(), Line.direction.horizontal);
+                mergeLines(player.getName(), Line.direction.diagonalBwd);
+                mergeLines(player.getName(), Line.direction.diagonalFwd);
 
                 getGame().endTurn();
             }
         }
     }
 
-    private void mergeLines( Line.direction direction ) {
+    private void mergeLines( playerName playerName, Line.direction direction ) {
         OXSquare square1 = this;
         OXSquare square2 = this;
 
@@ -65,8 +70,8 @@ public class OXSquare implements Square {
                 break;
 
             case diagonalFwd:
-                square1 = getGame().getBoard().getOXSquare( getRow()-1, getColumn()+1 );
-                square2 = getGame().getBoard().getOXSquare( getRow()-1, getColumn()+1 );
+                square1 = getGame().getBoard().getOXSquare( getRow()-1, getColumn()-1 );
+                square2 = getGame().getBoard().getOXSquare( getRow()+1, getColumn()+1 );
                 break;
 
         }
@@ -128,7 +133,7 @@ public class OXSquare implements Square {
 
             } else {
                 // create new line
-                Line newLine = new Line( this, this,  direction);
+                Line newLine = new Line( playerName, this, this,  direction);
                 getGame().getBoard().addLine( newLine );
                 addLine( newLine );
             }
@@ -137,6 +142,14 @@ public class OXSquare implements Square {
             System.out.println("Line object does not exist");
             e.printStackTrace();
         }
+    }
+
+    public void setButton(Button button) {
+        this.button = button;
+    }
+
+    public Button getButton() {
+        return button;
     }
 
     public int getRow() {

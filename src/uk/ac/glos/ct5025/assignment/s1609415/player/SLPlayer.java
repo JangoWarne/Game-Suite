@@ -34,9 +34,9 @@ public class SLPlayer implements Player {
                 try {
                     // Move to new square
                     SLGame slGame = (SLGame) getGame();
-                    SLSquare newSquare = slGame.getBoard().getSquare(position);
-                    currentSquare.removePlayer(this);
-                    newSquare.select( this, (roll == 6) );
+                    SLSquare newSquare = slGame.getBoard().getSLSquare(position);
+                    currentSquare.removePlayer( this );
+                    newSquare.select( this );
 
                 } catch (ClassCastException e) {
                     System.out.println("SLGame not used for S&L Game");

@@ -5,6 +5,8 @@ import javafx.util.Duration;
 import uk.ac.glos.ct5025.assignment.s1609415.game.SLGame;
 import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
 
+import java.util.ArrayList;
+
 public class SLSquare implements Square {
 
     private int row;
@@ -12,7 +14,7 @@ public class SLSquare implements Square {
     private Location location;
     private SLGame game;
     private int number;
-    private SLPlayer player;
+    private ArrayList<SLPlayer> players;
     private boolean hasPlayer;
     private SLSquare moveTo;
     private boolean hasAction;
@@ -30,7 +32,7 @@ public class SLSquare implements Square {
     public void select( SLPlayer player ) {
         // Move player piece
         setPlayer( player );
-        getGame().getDrawClass().movePiece( this, player );
+        //getGame().getDrawClass().movePiece( this, player );
 
         // Wait for 1s
         PauseTransition pause = new PauseTransition( Duration.millis(1000) );
@@ -45,7 +47,7 @@ public class SLSquare implements Square {
 
         } else if(hasAction()) {
             // If square has action
-            removePlayer();
+            removePlayer( player );
 
             // Select new square
             getMoveTo().select( player );
@@ -72,17 +74,18 @@ public class SLSquare implements Square {
         return hasPlayer;
     }
 
-    public SLPlayer getPlayer() {
-        return player;
+    public ArrayList<SLPlayer> getPlayers() {
+        return players;
     }
 
-    private void setPlayer(SLPlayer player) {
+    private void setPlayer( SLPlayer player ) {
         this.hasPlayer = true;
-        this.player = player;
+        this.players.add( player );
     }
 
-    private void removePlayer() {
-        this.hasPlayer = false;
+    public void removePlayer( SLPlayer player ) {
+        this.players.remove( player );
+        this.hasPlayer = !this.players.isEmpty();
     }
 
     public SLSquare getMoveTo() {
