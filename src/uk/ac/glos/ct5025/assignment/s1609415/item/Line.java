@@ -5,6 +5,13 @@ import uk.ac.glos.ct5025.assignment.s1609415.player.Player.playerName;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a line of OXSquare's with a direction
+ * it also tracks the length and the player
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class Line {
 
     public enum direction {

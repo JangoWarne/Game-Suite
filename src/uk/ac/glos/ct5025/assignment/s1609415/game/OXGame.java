@@ -8,6 +8,14 @@ import uk.ac.glos.ct5025.assignment.s1609415.item.Line.endsFree;
 import java.util.ArrayList;
 
 
+/**
+ * This class extends Game
+ * it changes the game end condition and changes the setup to add a board
+ * it adds winLength and edgeSize parameters
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class OXGame extends Game{
 
     private int winLength;

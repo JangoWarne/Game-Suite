@@ -23,7 +23,14 @@ import java.io.IOException;
 import javafx.util.Duration;
 import java.util.concurrent.ThreadLocalRandom;
 
-
+/**
+ * This class is the controller for diceGame.fxml
+ * it sets the handles for UI events/actions
+ * it loads the menu.fxml scene if user selects to go back
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class DiceGameController {
 
     private Game game;

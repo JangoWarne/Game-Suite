@@ -15,7 +15,13 @@ import uk.ac.glos.ct5025.assignment.s1609415.game.SLGame;
 
 import java.io.IOException;
 
-
+/**
+ * This class is the controller for menu.fxml
+ * it sets the handles for UI events/actions
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class MenuController {
 
     @FXML

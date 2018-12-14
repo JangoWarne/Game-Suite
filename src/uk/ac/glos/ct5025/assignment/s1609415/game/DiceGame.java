@@ -6,6 +6,13 @@ import uk.ac.glos.ct5025.assignment.s1609415.ui.DrawUI;
 
 import java.util.ArrayList;
 
+/**
+ * This class extends Game
+ * it changes the game end condition
+ *
+ * @author  Joshua Walker
+ * @version 1.1
+ */
 public class DiceGame extends Game {
 
 

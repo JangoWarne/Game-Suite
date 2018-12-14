@@ -18,7 +18,14 @@ import uk.ac.glos.ct5025.assignment.s1609415.player.DicePlayer;
 
 import java.io.IOException;
 
-
+/**
+ * This class is the controller for oxGame.fxml
+ * it sets the handles for UI events/actions
+ * it loads the menu.fxml scene if user selects to go back
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class OXGameController {
 
     private Game game;

@@ -10,7 +10,14 @@ import uk.ac.glos.ct5025.assignment.s1609415.game.Game;
 import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
 import javafx.scene.layout.TilePane;
 
-
+/**
+ * This class is the controller for slGame.fxml
+ * it sets the handles for UI events/actions
+ * it loads the menu.fxml scene if user selects to go back
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class SLGameController extends DiceGameController {
 
     @FXML

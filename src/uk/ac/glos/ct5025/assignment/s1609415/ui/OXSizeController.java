@@ -21,7 +21,16 @@ import java.io.IOException;
 
 import static java.lang.Integer.parseInt;
 
-
+/**
+ * This class is the controller for oxSize.fxml
+ * it sets the handles for UI events/actions
+ * it is used to select the noughts and crosses game board size
+ * it loads the oxGame.fxml when the user selects done
+ * it loads the menu.fxml scene if user selects to go back
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class OXSizeController {
 
     private OXGame game;

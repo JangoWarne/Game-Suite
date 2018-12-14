@@ -5,6 +5,15 @@ import uk.ac.glos.ct5025.assignment.s1609415.game.SLGame;
 import uk.ac.glos.ct5025.assignment.s1609415.item.Dice;
 import uk.ac.glos.ct5025.assignment.s1609415.item.SLSquare;
 
+/**
+ * This class implements Player
+ * it sets the make move behaviour
+ * (move is based on dice roll)
+ * it defines a constructor
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class SLPlayer implements Player {
 
     private Player.playerType playerType;

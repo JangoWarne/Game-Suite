@@ -7,6 +7,14 @@ import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
 
 import java.util.ArrayList;
 
+/**
+ * This class implements Square
+ * it sets the selection behaviour
+ * it defines a constructor
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class SLSquare implements Square {
 
     private int row;

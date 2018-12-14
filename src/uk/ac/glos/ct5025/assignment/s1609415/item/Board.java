@@ -8,6 +8,13 @@ import uk.ac.glos.ct5025.assignment.s1609415.player.Player.playerName;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This class creates a board on the UI out of buttons attached to squares objects
+ * it also tracks the lines created by noughts and crosses
+ *
+ * @author  Joshua Walker
+ * @version 1.2
+ */
 public class Board {
 
     private ArrayList<ArrayList<OXSquare>> oxSquares;
@@ -127,16 +134,16 @@ public class Board {
         return new OXSquare((OXGame) getGame(), new Location(-1, -1, 0), -1, -1);
     }
 
+    private Game getGame() {
+        return game;
+    }
+
     private ArrayList<Line> getAllLines() {
         return lines;
     }
 
     protected void addLine(Line line) {
         lines.add(line);
-    }
-
-    private Game getGame() {
-        return game;
     }
 
     protected void removeLine(Line line) {

@@ -22,7 +22,16 @@ import uk.ac.glos.ct5025.assignment.s1609415.player.SLPlayer;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * This class is the controller for players.fxml
+ * it sets the handles for UI events/actions
+ * it is used to select the human/computer setup for player 1 and 2
+ * it loads diceGame.fxml, slGame.fxml or oxSize.fxml based on game type
+ * it loads the menu.fxml scene if user selects to go back
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class PlayersController {
 
     private Game game;

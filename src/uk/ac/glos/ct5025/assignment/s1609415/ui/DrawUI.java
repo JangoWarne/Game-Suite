@@ -27,7 +27,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ * This class draws UI items on the current scene
+ * it sets the action for the button for an OXSquare
+ *
+ * @author  Joshua Walker
+ * @version 1.3
+ */
 public class DrawUI {
 
     private Scene currentScene;

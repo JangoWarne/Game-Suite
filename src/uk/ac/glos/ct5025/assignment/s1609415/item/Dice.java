@@ -5,6 +5,12 @@ import uk.ac.glos.ct5025.assignment.s1609415.ui.DiceGameController;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * This class generates the roll of a 6-sided dice
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class Dice {
 
     private int number;

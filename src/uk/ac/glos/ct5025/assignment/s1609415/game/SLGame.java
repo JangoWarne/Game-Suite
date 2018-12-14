@@ -7,6 +7,14 @@ import uk.ac.glos.ct5025.assignment.s1609415.ui.DrawUI;
 
 import java.util.ArrayList;
 
+
+/**
+ * This class extends Game
+ * it changes the game end condition and changes the setup to add a board
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class SLGame extends Game {
 
     private Board board;

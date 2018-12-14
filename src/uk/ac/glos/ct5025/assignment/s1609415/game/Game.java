@@ -7,6 +7,13 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
+/**
+ * This class sets up a game and detects the end condition of the game
+ * it also can return if the game is running and who the players are
+ *
+ * @author  Joshua Walker
+ * @version 1.2
+ */
 public class Game {
 
     public enum gameType {

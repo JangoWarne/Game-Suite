@@ -10,6 +10,15 @@ import uk.ac.glos.ct5025.assignment.s1609415.item.Line.endsFree;
 
 import java.util.ArrayList;
 
+/**
+ * This class implements Player
+ * it sets the make move behaviour
+ * (move is based on lines in Board)
+ * it defines a constructor
+ *
+ * @author  Joshua Walker
+ * @version 1.0
+ */
 public class OXPlayer implements Player {
 
     private Player.playerType playerType;
